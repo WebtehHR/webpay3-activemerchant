@@ -1,0 +1,65 @@
+<h1>Order #<%= @order.id %></h1>
+<hr>
+
+<% merchant = Merchant.new %>
+<% payment_service_for  @order.order_number, merchant.merchant_token,
+                        :service => :web_pay3,
+                        :amount => @order.amount,
+                        :currency => @order.currency,
+                        :key => merchant.key,
+                        :return_url => 'return_url',
+                        :html => { :id => 'payment-form' } do |service| %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <p>
+        <strong>Order number:</strong>
+        <%= @order.order_number %>
+      </p>
+
+      <p>
+        <strong>Currency:</strong>
+        <%= @order.currency %>
+      </p>
+
+      <p>
+        <strong>Amount:</strong>
+        <%= @order.amount %>
+      </p>
+
+      <p>
+        <strong>Status:</strong>
+        <%= @order.status %>
+      </p>
+
+      <% service.language 'en' %>
+      <% service.order_info 'order info' %>
+      <% service.transaction_type 'authorize' %>
+
+      <% service.ch_full_name 'John Doe' %>
+      <% service.ch_address 'Street 15' %>
+      <% service.ch_city 'Old Town' %>
+      <% service.ch_zip '123bnm789' %>
+      <% service.ch_country 'Azeroth' %>
+      <% service.phone '00-123 456-7' %>
+      <% service.ch_email 'email@email.com' %>
+
+      <br>
+      <%= submit_tag "Pay for your Order", :class => 'btn btn-lg btn-default' unless @order.status == 'Approved' %>
+
+    </div>
+
+    <div class="col-md-6">
+      <div class="well">
+        <strong>Test merchant settings:</strong><br>
+        merchant_token: 62cb47ff4a176222a759ca308e23ec0d1c816639<br>
+        key: Sho65#$%!1<br><br>
+        <strong>ActiveMerchant form fields:</strong><br>
+        <%= service.form_fields.inspect %><br><br>
+        <strong>ActiveMerchant mappings:</strong><br>
+        <%= service.class.mappings.inspect %><br>
+      </div>
+    </div>
+  </div>
+<% end %>
+
