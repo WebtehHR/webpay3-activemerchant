@@ -1,8 +1,10 @@
-PATH
-  remote: ../active_merchant
+GIT
+  remote: git://github.com/WebtehHR/active_merchant.git
+  revision: f6977522cfccff88685d81975866831b38afc80b
+  branch: webpay3
   specs:
     activemerchant (1.43.1)
-      active_utils (~> 2.0, >= 2.0.1)
+      active_utils (~> 2.1)
       activesupport (>= 2.3.14, < 5.0.0)
       builder (>= 2.1.2, < 4.0.0)
       i18n (~> 0.5)
@@ -26,7 +28,7 @@ GEM
       activesupport (= 4.1.0)
       builder (~> 3.1)
       erubis (~> 2.7.0)
-    active_utils (2.0.2)
+    active_utils (2.2.0)
       activesupport (>= 2.3.11)
       i18n
     activemodel (4.1.0)
@@ -66,15 +68,13 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    mini_portile (0.5.3)
-    minitest (5.3.3)
-    monetize (0.1.4)
-    money (6.0.1)
+    mini_portile (0.6.0)
+    minitest (5.3.4)
+    money (6.1.1)
       i18n (~> 0.6.4)
-      monetize (~> 0.1.3)
     multi_json (1.10.0)
-    nokogiri (1.6.1)
-      mini_portile (~> 0.5.0)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     pg (0.17.1)
     polyglot (0.3.4)
     rack (1.5.2)
@@ -95,7 +95,7 @@ GEM
       activesupport (= 4.1.0)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.3.1)
+    rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
     sass (3.2.19)
@@ -107,7 +107,7 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
-    spring (1.1.2)
+    spring (1.1.3)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)

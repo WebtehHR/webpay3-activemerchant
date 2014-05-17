@@ -38,5 +38,5 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'activemerchant', path: '../active_merchant'
+gem 'activemerchant', github: 'WebtehHR/active_merchant', :branch => 'webpay3'
 gem 'pg'

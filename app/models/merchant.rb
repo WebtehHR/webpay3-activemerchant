@@ -6,4 +6,12 @@ class Merchant
   def key
     'Sho65#$%!1'
   end
+
+  def transaction_type
+    'authorize'
+  end
+
+  def language
+    'en'
+  end
 end

@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   include ActiveMerchant::Billing::Integrations
   require 'active_merchant/billing/integrations/action_view_helper'
   ActionView::Base.send(:include, ActiveMerchant::Billing::Integrations::ActionViewHelper)
+  ActiveMerchant::Billing::Base.integration_mode = :development # use wp3 sandbox
 
   # return url from gateway that updates order status
   def return_action
@@ -29,7 +30,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.order('id desc')
   end
 
   # GET /orders/1

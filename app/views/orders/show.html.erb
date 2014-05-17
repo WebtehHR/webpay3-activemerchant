@@ -6,9 +6,22 @@
                         :service => :web_pay3,
                         :amount => @order.amount,
                         :currency => @order.currency,
-                        :key => merchant.key,
+                        :credential2 => merchant.key,
+                        :credential3 => merchant.language,
+                        :transaction_type => merchant.transaction_type,
                         :return_url => 'return_url',
                         :html => { :id => 'payment-form' } do |service| %>
+
+
+  <% service.address  name: 'John Doe',
+                      address1: 'Street 15',
+                      city: 'Old Town',
+                      zip: '123456',
+                      country: 'Azeroth',
+                      phone: '00-123 456-7',
+                      email: 'email@email.com' %>
+
+  <% service.order_info 'order info' %>
 
   <div class="row">
     <div class="col-md-6">
@@ -32,18 +45,6 @@
         <%= @order.status %>
       </p>
 
-      <% service.language 'en' %>
-      <% service.order_info 'order info' %>
-      <% service.transaction_type 'authorize' %>
-
-      <% service.ch_full_name 'John Doe' %>
-      <% service.ch_address 'Street 15' %>
-      <% service.ch_city 'Old Town' %>
-      <% service.ch_zip '123bnm789' %>
-      <% service.ch_country 'Azeroth' %>
-      <% service.phone '00-123 456-7' %>
-      <% service.ch_email 'email@email.com' %>
-
       <br>
       <%= submit_tag "Pay for your Order", :class => 'btn btn-lg btn-default' unless @order.status == 'Approved' %>
 
@@ -52,8 +53,11 @@
     <div class="col-md-6">
       <div class="well">
         <strong>Test merchant settings:</strong><br>
-        merchant_token: 62cb47ff4a176222a759ca308e23ec0d1c816639<br>
-        key: Sho65#$%!1<br><br>
+        merchant_token: <%= merchant.merchant_token %><br>
+        key: <%= merchant.key %><br>
+        transaction_type: <%= merchant.transaction_type %><br>
+        language: <%= merchant.language %><br>
+        <br>
         <strong>ActiveMerchant form fields:</strong><br>
         <%= service.form_fields.inspect %><br><br>
         <strong>ActiveMerchant mappings:</strong><br>
